@@ -1,0 +1,23 @@
+plugins {
+    id 'java' // 자바 빌드 id
+    id 'org.springframework.boot' version '2.2.7.RELEASE' // 스프링부트 빌드 id
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE' // 디펜더시 빌드 id
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // @ 이노테이션
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
