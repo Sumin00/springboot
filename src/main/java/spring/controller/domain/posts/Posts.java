@@ -4,34 +4,28 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity // 해당 클래스를 관계형 데이터베이스 클래스 사용 : JPA DB 클래스
 @Getter // get 메소드 자동 사용
-@NoArgsConstructor
-//@RequiredArgsConstructor : 생성자 자동 생성
+@NoArgsConstructor // 깡통[빈] 생성자 생성//@RequiredArgsConstructor : 생성자 자동 생성
+@Entity // 해당 클래스를 관계형 데이터베이스 클래스 사용 : JPA DB 클래스
 public class Posts { // DB 테이블 설계
 
     @Id // 기본키
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // AI = 오토 키 부여
-    private Long id; //게시물 번호
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 오토키
+    private Long id;
 
-    // column 설정=> 필드 설정= 기본값 =>
-    @Column(length = 500, nullable = false) // varchar(len)
-    private String title; //게시물 제목
+    @Column(length = 500, nullable = false) // 열[필드] 속성
+    private String title;
 
-    @Column(columnDefinition ="TEXT",nullable = false)
-    private String content; // 게시물 내용
+    @Column(columnDefinition = "TEXT", nullable = false) // 열[필드] 속성
+    private String content;
 
+    private String author;
 
-    private String author; // 게시물 작성자
-
-    @Builder // 생성자의 안전성 보장: 1. JPA 인수 순서 구분x 2. null 값 자동 제한 등
-    //생성자
-    public Posts(String title, String content, String autohor){
-
-        this.title=title;
-        this.content=content;
-        this.author=autohor;
-
+    @Builder // 객체 생성시 안정성 보장 => 인수 순서 구분x // null 제외 등
+    public Posts(String title, String content, String author) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
     }
 
 }
